@@ -15,14 +15,12 @@ if __name__ == "__main__":
     selectionMade = False
     menuItem = {}
     while selectionMade != True:
-        prefixItem = {}
         for p in allPrefixes['results']:
+            prefixItem = {}
             print("%-5s : %s" % (i, p['prefix']))
             prefixItem['id'] = p['id']
             prefixItem['prefix'] = p['prefix']
             menuItem[i] = prefixItem
-            # menuItem[i]['prefix'] = p['prefix']
-            # menuItem[i]['id'] = p['id']
             i += 1
 
         try:
