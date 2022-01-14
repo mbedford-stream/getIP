@@ -11,10 +11,10 @@ if __name__ == "__main__":
 
     allPrefixes = getNetboxPrefixes(netboxURL, netboxAuth)
 
-    i = 1
     selectionMade = False
     menuItem = {}
     while selectionMade != True:
+        i = 1
         for p in allPrefixes['results']:
             prefixItem = {}
             print("%-5s : %s" % (i, p['prefix']))
@@ -23,12 +23,14 @@ if __name__ == "__main__":
             menuItem[i] = prefixItem
             i += 1
 
+        # print(len(allPrefixes['results']))
+
         try:
             prefixSelect = int(input("Which network? "))
         except Exception as e:
-            quit()
+            continue
 
-        if prefixSelect > 1 and prefixSelect <= len(p):
+        if prefixSelect > 1 and prefixSelect <= len(allPrefixes['results']):
             selectionMade = True
 
     print("getting new IP in network: %s" % menuItem[prefixSelect]['prefix'])
