@@ -56,4 +56,5 @@ if __name__ == "__main__":
     if createStatus != True:
         print("Oopsie")
     else:
-        print("I think we reserved an IP.... ")
+        print("The following IP has been assigned and registered...\n%-18s : %s" %
+              (newIP, newIPDNS))
