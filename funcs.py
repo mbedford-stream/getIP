@@ -37,7 +37,7 @@ def getNetboxIP(netboxURL, prefixID, netboxAuth):
     # Return the a random IP address from the list of available values
     # just because we can.
     # We also return the total number of available IPs on the subnet.... because we can
-    return jsonResp[random.randrange(0, len(jsonResp))]["address"], len(jsonResp)-1
+    return jsonResp[random.randrange(0, len(jsonResp))]["address"], len(jsonResp)-1, ""
 
 
 def getNetboxPrefixes(netboxURL, netboxAuth):
@@ -56,12 +56,12 @@ def getNetboxPrefixes(netboxURL, netboxAuth):
         authResp = requests.get(
             netQueryURL, headers=authHeaders, verify=False)
     except Exception as e:
-        return "", 0,  e
+        return "", e
 
     # Handle cases where response is not 200 so we don't try to json an error message
     if authResp.status_code != 200:
         print(authResp.status_code, authResp.text)
-        return "", 0, str(authResp.status_code)+"\n"+authResp.text
+        return "", str(authResp.status_code)+"\n"+authResp.text
     else:
         jsonResp = json.loads(authResp.text)
 
@@ -69,7 +69,7 @@ def getNetboxPrefixes(netboxURL, netboxAuth):
     # just because we can.
     # We also return the total number of available IPs on the subnet.... because we can
 
-    return jsonResp
+    return jsonResp, ""
 
     # return jsonResp[random.randrange(0, len(jsonResp))]["address"], len(jsonResp)-1,  ""
 
